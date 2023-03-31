@@ -3,6 +3,7 @@ const inicioDebug = require('debug')('app:inicio'); // Importar el paquete debug
                                 // de depuración.
 const dbDebug = require('debug')('app:db');
 const usuarios = require('./routes/usuarios');
+const productos = require('./routes/productos');
 const express = require('express'); // Importa el paquete express
 const config = require('config'); // Importa el paquete config
 const logger = require('./logger');
@@ -31,6 +32,7 @@ app.use('/api/usuarios', usuarios); // Middleware que importamos
 // La ruta raíz se va a concatenar como prefijo
 // al inicio de todas las rutas definidas en
 // el archivo usuarios.
+app.use('/api/productos', productos);
 
 
 console.log(`Aplicación: ${config.get('nombre')}`);
@@ -77,9 +79,9 @@ app.get('/', (req, res) => {
 //     res.send(req.query);
 // });
 
-app.get('/api/productos', (req, res) => {
-    res.send(['mouse', 'teclado', 'bocinas']);
-})
+// app.get('/api/productos', (req, res) => {
+//     res.send(['mouse', 'teclado', 'bocinas']);
+// })
 
 // El módulo process, contiene información del sistema
 // El objeto env contiene información de las variables
